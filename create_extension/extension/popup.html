@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Assistant Tab Reader</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 320px;
+      padding: 15px;
+      margin: 0;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+    h1 {
+      font-size: 16px;
+      margin: 0;
+      color: #4f46e5;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #4b5563;
+      margin: 10px 0;
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #f9fafb;
+      border-radius: 8px;
+    }
+    .toggle-label {
+      flex-grow: 1;
+      font-weight: 500;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 26px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .toggle-slider {
+      background-color: #4f46e5;
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+    .share-button {
+      width: 100%;
+      padding: 10px 0;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .share-button:hover {
+      background-color: #4338ca;
+    }
+    .share-button:disabled {
+      background-color: #9ca3af;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+    .status.success {
+      color: #10b981;
+    }
+    .status.error {
+      color: #ef4444;
+    }
+    .last-shared {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 10px;
+    }
+    .url {
+      font-style: italic;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="123.png" alt="AI Assistant">
+    <h1>AI Assistant Tab Reader</h1>
+  </div>
+  
+  <p>This extension allows the AI Assistant to read content from all open tabs in your Chrome window to answer your questions about them.</p>
+  
+  <div class="toggle-container">
+    <span class="toggle-label">Auto-share all tabs</span>
+    <label class="toggle-switch">
+      <input type="checkbox" id="autoShareToggle">
+      <span class="toggle-slider"></span>
+    </label>
+  </div>
+  
+  <p id="autoShareDescription">When enabled, the AI Assistant will automatically receive content from all open tabs.</p>
+  
+  <button id="shareButton" class="share-button">Share All Tabs with AI</button>
+  
+  <div id="statusMessage" class="status"></div>
+  
+  <div id="lastSharedContainer" class="last-shared" style="display: none;">
+    <div>Last shared: <span id="lastSharedTime"></span></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

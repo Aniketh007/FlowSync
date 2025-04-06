@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+flask==2.2.3
+streamlit
